@@ -15,12 +15,12 @@ public class UserService {
 
 	private final UserRepository userRepository;
 	
-	private User create(String user_id, String user_password, String user_question, String user_answer) {
+	private User create(String UserId, String UserPassword, String UserQuestion, String UserAnswer) {
 		User user = new User();
-		user.setUser_id(user_id);
-		user.setUser_password(user_password);
-		user.setUser_question(user_question);
-		user.setUser_answer(user_answer);
+		user.setUserId(UserId);;
+		user.setUserPassword(UserPassword);;
+		user.setUserQuestion(UserQuestion);;
+		user.setUserAnswer(UserAnswer);;
 		this.userRepository.save(user);
 		return user;
 	}
@@ -29,18 +29,18 @@ public class UserService {
 		return this.userRepository.findAll();
 	}
 	
-	public User getUser(Long user_num) {
-		Optional<User> user = this.userRepository.findById(user_num);
+	public User getUser(Long UserNum) {
+		Optional<User> user = this.userRepository.findById(UserNum);
 		if (user.isPresent())
 			return user.get();
 		else
 			throw new DataNotFoundException("해당 아이디가 없습니다.");
 	}
 	
-	public void modify(User user, String user_password, String user_question, String user_answer) {
-		user.setUser_password(user_password);
-		user.setUser_question(user_question);
-		user.setUser_answer(user_answer);
+	public void modify(User user, String UserPassword, String UserQuestion, String UserAnswer) {
+		user.setUserPassword(UserPassword);;
+		user.setUserQuestion(UserQuestion);;
+		user.setUserAnswer(UserAnswer);;
 		this.userRepository.save(user);
 	}
 	

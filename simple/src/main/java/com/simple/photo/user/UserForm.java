@@ -11,14 +11,14 @@ import lombok.Setter;
 public class UserForm {
 
 	@NotEmpty(message = "ID는 필수로 입력해주셔야합니다.")
-	private String userid;
+	private String UserId;
 	
 	@NotEmpty(message = "Password는 필수로 입력해주셔야합니다.")
-	private String userpassword;
+	private String UserPassword;
 	
 	@NotEmpty(message = "질문은 필수로 선택해주셔야합니다.")
-	private String userquestion;
+	private String UserQuestion;
 	
 	@NotEmpty(message = "답변은 필수로 입력해주셔야합니다.")
-	private String useranswer;
+	private String UserAnswer;
 }

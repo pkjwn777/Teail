@@ -15,18 +15,18 @@ public class User {
 
 	@Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long user_num;
+private Long UserNum;
 	
 	@Column(unique = true, length = 50)
-private String user_id;
+private String UserId;
 
 	@Column(length = 50)
-private String user_password;
+private String UserPassword;
 
 	  @Column(columnDefinition = "TEXT")
-private String user_question;
+private String UserQuestion;
 	
 	  @Column(columnDefinition = "TEXT")
-	private String user_answer;
+	private String UserAnswer;
 	
 }
