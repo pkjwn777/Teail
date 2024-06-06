@@ -1,5 +1,5 @@
 package com.simple.photo.API;
-// GeminiService.java
+// APIService.java
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ApiService {
- @Qualifier("apiiRestTemplate")
+public class APIService {
+ @Qualifier("APIiRestTemplate")
     @Autowired
     private RestTemplate restTemplate;
 
@@ -26,8 +26,8 @@ public class ApiService {
         // Gemini에 요청 전송
         String requestUrl = apiUrl + "?key=" + geminiApiKey;
 
-        apiRequest request = new apiRequest(prompt);
-        apiResponse response = restTemplate.postForObject(requestUrl, request, apiResponse.class);
+        APIRequest request = new APIRequest(prompt);
+        APIResponse response = restTemplate.postForObject(requestUrl, request, APIResponse.class);
 
         String message = response.getCandidates().get(0).getContent().getParts().get(0).getText().toString();
 
