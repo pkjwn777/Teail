@@ -1,5 +1,4 @@
-//	GeminiRestTemplateConfig.java
-package com.mysite.sbb;
+package com.simple.photo.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @RequiredArgsConstructor
-public class GeminiRestTemplateConfig {
+public class APIRestTemplateConfig {
 
     @Bean
     @Qualifier("geminiRestTemplate")
