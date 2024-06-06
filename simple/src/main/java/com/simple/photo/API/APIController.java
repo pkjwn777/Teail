@@ -11,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/gemini")
 
-public class ApiController {
-  private final apiService apiService;
+public class APIController {
+  private final APIService apiService;
 
     @GetMapping("/chat")
     public ResponseEntity<?> gemini() {
         try {
-            return ResponseEntity.ok().body(apiService.getContents("안녕! 너는 누구야?"));
+            return ResponseEntity.ok().body(APIService.getContents("안녕! 너는 누구야?"));
         } catch (HttpClientErrorException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
