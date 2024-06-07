@@ -13,7 +13,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class APIRepository {
+public class APIResponse {
   private List<Candidate> candidates;
   private PromptFeedback promptFeedback;
 
