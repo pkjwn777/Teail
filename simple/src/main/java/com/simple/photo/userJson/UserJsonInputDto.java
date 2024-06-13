@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserJsonInputDto {
 	
-	private Long JsonID;
-	private Long UserNum;
-	private JSONObject JsonFile;
-	private String JsonName;
+	private Long jsonID;
+	private Long userNum;
+	private JSONObject jsonFile;
+	private String jsonName;
 	
-	private int FileNum;
-	private String UserId;
-	private String UserPassword;
-	private String UserPasswordConfirm;
-	private JSONObject UserLib;
-	private int NumFileNum;
+	private int fileNum;
+	private String userId;
+	private String userPassword;
+	private String userPasswordConfirm;
+	private JSONObject userLib;
+	private int newFileNum;
 }

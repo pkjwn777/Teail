@@ -25,25 +25,25 @@ public class UserService {
 	
 	private Set<String> idcheck = new HashSet<>();
 	public ResponseDto<?> create(UserInputDto userInputDto) {
-		String UserId = userInputDto.getUserId();
-		String UserPassword = userInputDto.getUserPassword();
-		String UserPasswordConfirm = userInputDto.getUserPasswordConfirm();
+		String userId = userInputDto.getUserId();
+		String userPassword = userInputDto.getUserPassword();
+		String userPasswordConfirm = userInputDto.getUserPasswordConfirm();
 		
-		if (!idcheck.contains(UserId))
-			idcheck.add(UserId);
+		if (!idcheck.contains(userId))
+			idcheck.add(userId);
 		
 		try {
-			if (idcheck.contains(UserId))
+			if (idcheck.contains(userId))
 				return ResponseDto.setFailed("중복된 ID입니다.");
 		} catch (Exception e) {
 			// TODO: handle exception
 			return ResponseDto.setFailed("데이터베이스 연결에 실패하였습니다.");
 		}
 		
-		if (!UserPassword.equals(UserPasswordConfirm))
+		if (!userPassword.equals(userPasswordConfirm))
 			return ResponseDto.setFailed("비밀번호가 일치하지 않습니다.");
 		
-		User user = new User(userInputDto);
+		UserEntity user = new UserEntity(userInputDto);
 		
 		try {
 			userRepository.save(user);
@@ -54,38 +54,38 @@ public class UserService {
 		return ResponseDto.setSuccess("회원가입이 완료되었습니다.");
 	}
 	 @Transactional
-	public List<User> getList(){
+	public List<UserEntity> getList(){
 		return this.userRepository.findAll();
 	}
 
 	 public ResponseDto<?> modify(UserInputDto userInputDto){
-		 User user = new User();
-		 Long UserNum = userInputDto.getUserNum();
-		String UserPassword = "";
-		String UserPasswordConfirm = userInputDto.getUserPasswordConfirm();
-		String UserNewPassword = userInputDto.getUserNewPassword();
-		String UserNewPasswordConfirm = userInputDto.getUserNewPasswodConfirm();
-		 Optional<User> usero= userRepository.findById(UserNum);
+		 UserEntity user = new UserEntity();
+		 Long userNum = userInputDto.getUserNum();
+		String userPassword = "";
+		String userPasswordConfirm = userInputDto.getUserPasswordConfirm();
+		String userNewPassword = userInputDto.getUserNewPassword();
+		String userNewPasswordConfirm = userInputDto.getUserNewPasswodConfirm();
+		 Optional<UserEntity> usero= userRepository.findById(userNum);
 		 if (usero.isPresent()) {
-	            UserPassword = usero.get().getUserPassword();
+	            userPassword = usero.get().getUserPassword();
 	        } else {
 	            throw new DataNotFoundException("해당유저의 정보가 없습니다");
 	        }	
-		 if (!UserPassword.equals(UserPasswordConfirm))
+		 if (!userPassword.equals(userPasswordConfirm))
 				return ResponseDto.setFailed("기존 비밀번호가 일치하지 않습니다.");
 		 
-		 if (!UserNewPassword.equals(UserNewPasswordConfirm))
+		 if (!userNewPassword.equals(userNewPasswordConfirm))
 				return ResponseDto.setFailed("새로운 비밀번호가 일치하지 않습니다.");
 		 
-		 String UsernewQuestion = userInputDto.getUserQuestion();
-		 String UsernewAnswer = userInputDto.getUserAnswer();
+		 String usernewQuestion = userInputDto.getUserQuestion();
+		 String usernewAnswer = userInputDto.getUserAnswer();
 			
 			try {
-				user.setUserNum(UserNum);
+				user.setUserNum(userNum);
 				user.setUserId(usero.get().getUserId());
-				user.setUserPassword(UserNewPassword);
-				user.setUserQuestion(UsernewQuestion);
-				user.setUserAnswer(UsernewAnswer);
+				user.setUserPassword(userNewPassword);
+				user.setUserQuestion(usernewQuestion);
+				user.setUserAnswer(usernewAnswer);
 				userRepository.save(user);
 			}catch (Exception e) {
 				// TODO: handle exception

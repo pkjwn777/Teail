@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class UserRequestDto {
-	Long UserNum;
-	String UserId;
-	String UserPassword;
-	String UserQuestion;
-	String UserAnswer;
+	Long userNum;
+	String userId;
+	String userPassword;
+	String userQuestion;
+	String userAnswer;
 }

@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 public class UserJsonRequestDto {
 
-	private Long JsonID;
-	private Long UserNum;
-	private JSONObject JsonFile;
-	private String JsonName;
+	private Long jsonID;
+	private Long userNum;
+	private JSONObject jsonFile;
+	private String jsonName;
 }

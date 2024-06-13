@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.xdevapi.JsonArray;
 import com.simple.photo.DataNotFoundException;
-import com.simple.photo.user.User;
+import com.simple.photo.user.UserEntity;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +36,7 @@ public class UserJsonService {
 	}
 	
 public void JavaToJson(UserJsonInputDto jsonInputDto) {
-	Optional<UserJson> userjson = userjsonRepository.findById(jsonInputDto.getUserNum());
+	Optional<UserJsonEntity> userjson = userjsonRepository.findById(jsonInputDto.getUserNum());
 	Integer numcount = 0;
 	if (userjson.isPresent()) {
         numcount = CountLib(userjson.get().getJsonFile());
@@ -55,7 +55,7 @@ public void JavaToJson(UserJsonInputDto jsonInputDto) {
 		filenum = 3;
 		break;
 	case 3:
-		
+		filenum = jsonInputDto.getNewFileNum();
 		break;
 	}
 	JSONObject Jsonfile = jsonInputDto.getUserLib();

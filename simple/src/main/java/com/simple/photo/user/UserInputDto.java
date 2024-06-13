@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInputDto {
-	private String UserId;
-	private String UserPassword;
-	private String UserPasswordConfirm;
-	private String UserQuestion;
-	private String UserAnswer;
-	private String UserNewPassword;
-	private String UserNewPasswodConfirm;
-	private Long UserNum;
-	private Boolean Yn;
+	private String userId;
+	private String userPassword;
+	private String userPasswordConfirm;
+	private String userQuestion;
+	private String userAnswer;
+	private String userNewPassword;
+	private String userNewPasswodConfirm;
+	private Long userNum;
+	private Boolean yn;
 }
