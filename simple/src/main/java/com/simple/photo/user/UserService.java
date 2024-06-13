@@ -23,17 +23,26 @@ public class UserService {
 
 	@Autowired UserRepository userRepository;
 	
-	private Set<String> idcheck = new HashSet<>();
+	public Boolean IDcheck (String userID) {
+		Set<String>Idset = new HashSet<>();
+		for (UserEntity list : getList()) {
+			Idset.add(list.getUserId());
+		}
+		if (Idset.contains(userID))
+			return true;
+		else
+			return false;
+		
+	}
 	public ResponseDto<?> create(UserInputDto userInputDto) {
+		
 		String userId = userInputDto.getUserId();
 		String userPassword = userInputDto.getUserPassword();
 		String userPasswordConfirm = userInputDto.getUserPasswordConfirm();
 		
-		if (!idcheck.contains(userId))
-			idcheck.add(userId);
 		
 		try {
-			if (idcheck.contains(userId))
+			if (IDcheck(userId))
 				return ResponseDto.setFailed("중복된 ID입니다.");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -53,13 +62,13 @@ public class UserService {
 		}
 		return ResponseDto.setSuccess("회원가입이 완료되었습니다.");
 	}
-	 @Transactional
+	 
 	public List<UserEntity> getList(){
 		return this.userRepository.findAll();
 	}
 
 	 public ResponseDto<?> modify(UserInputDto userInputDto){
-		 UserEntity user = new UserEntity();
+		 UserEntity user = new UserEntity(userInputDto);
 		 Long userNum = userInputDto.getUserNum();
 		String userPassword = "";
 		String userPasswordConfirm = userInputDto.getUserPasswordConfirm();
@@ -112,5 +121,8 @@ public class UserService {
 			 return ResponseDto.setFailed("데이터베이스 연결에 실패하였습니다.");
 		}
 		 return ResponseDto.setSuccess("회원탈퇴가 완료되었습니다.");
+	 }
+	 public Optional<UserEntity> getUserByNum(Long userNum){
+		 return this.userRepository.findById(userNum);
 	 }
 }

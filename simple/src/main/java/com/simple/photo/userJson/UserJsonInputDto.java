@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserJsonInputDto {
 	
-	private Long jsonID;
+	private Long jsonId;
 	private Long userNum;
 	private JSONObject jsonFile;
 	private String jsonName;

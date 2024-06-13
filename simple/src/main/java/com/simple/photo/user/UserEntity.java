@@ -1,10 +1,13 @@
 package com.simple.photo.user;
 
+import org.springframework.context.annotation.Primary;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,13 +15,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-@Entity(name = "user")
+//@Primary
+@Entity(name = "userinfo")
+@Table(name = "userinfo")
 public class UserEntity {
 
 	@Id
