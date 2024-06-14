@@ -99,9 +99,17 @@ public JSONObject JavaToJson(UserJsonInputDto jsonInputDto) {
 //			// TODO: handle exception
 //			return ResponseDto.setFailed("데이터베이스 연결에 실패하였습니다.2");
 //		}
-
+Optional<UserJsonEntity> userJsoncheck = userjsonRepository.findByuserNum(userNum);
+Long jsonId = (long) 0;
+if (userJsoncheck.isEmpty()) {
+	 jsonId = makeJsonId();
+}
+else {
+	jsonId = userJsoncheck.get().getJsonId();
+}
 		UserJsonEntity userJson = new UserJsonEntity(userJsonInputDto);
 		try {
+			userJson.setJsonId(jsonId);
 			userJson.setUserNum(userNum);
 			userJson.setJsonFile(jsonFile);
 			userjsonRepository.save(userJson);
@@ -114,6 +122,17 @@ public JSONObject JavaToJson(UserJsonInputDto jsonInputDto) {
 	
 	public List<UserJsonEntity> getList(){
 		return this.userjsonRepository.findAll();
+	}
+	
+	public Long makeJsonId() {
+		Long jsonId = (long)0;
+		List<UserJsonEntity> userJson = getList();
+		if (!userJson.isEmpty()) {
+			jsonId = userJson.get(userJson.size()-1).getJsonId();
+		}
+		
+		jsonId +=1;
+		return jsonId;
 	}
 //	
 //	public UserJson getUserJson(Long JsonID) {

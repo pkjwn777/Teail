@@ -32,7 +32,9 @@ import lombok.Setter;
 public class UserJsonEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "json_id")
+//	@Column(table = "userJson")
 	private Long jsonId;
 	
 //	@OneToOne(cascade = CascadeType.PERSIST)
