@@ -15,24 +15,27 @@ import com.google.cloud.vertexai.generativeai.PartMaker;
 import com.google.cloud.vertexai.generativeai.ResponseHandler;
 import com.google.cloud.vertexai.generativeai.ResponseStream; 
 
+import com.google.cloud.vertexai.VertexAI;
+import com.google.cloud.vertexai.api.GenerateContentResponse;
+import com.google.cloud.vertexai.generativeai.ChatSession;
+import com.google.cloud.vertexai.generativeai.GenerativeModel;
+import com.google.cloud.vertexai.generativeai.ResponseHandler;
+
 @SpringBootApplication
 public class Apitest2Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		VertexAI vertexAI = new VertexAI("vertexai1-425802", "asia-northeast3");
-		    GenerateContentResponse response;
+		
+		GenerativeModel model = new GenerativeModel("gemini-pro-vision", vertexAI);
+		
+		GenerateContentResponse response = model.generateContent(
+		ContentMaker.fromMultiModalData(
+				PartMaker.fromMimeTypeAndData("image/png", "gs://client_repuest_image/ajlkdfjoiel.png"),
+		          "이미지를 설명할 명사 다섯개")
+		        );
 
-		    GenerativeModel model = new GenerativeModel("gemini-pro", vertexAI);
-		    ChatSession chatSession = new ChatSession(model);
-
-		    try {
-				response = chatSession.sendMessage("Can I get some words for explain Rokey Mountain?.");
-				System.out.println(ResponseHandler.getText(response));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
+		    System.out.println(ResponseHandler.getText(response));
+		    
+	}
 }
